@@ -10,7 +10,7 @@
     
     <script type="text/javascript">
         $(function () {
-            $.connection.hub.url = "http://localhost:9000/signalr";
+            $.connection.hub.url = "http://localhost:9001/signalr";
             var chat = $.connection.refreshHub;
 
             chat.client.addNewMessageToPage = function (id, status) {
@@ -66,10 +66,10 @@
         </div>
         <div class="container" ng-controller="GroupController">
             <div class="row jobsList" ng-repeat="job in jobs">
-            
+
                 <div class="jobRow" id='job_{{job.Id}}'>
-                    
-                    <div class="callout callout-success">
+
+                    <div ng-class="{'callout-success': job.Status== 'Passing',' callout-danger' : job.Status != 'Passing'}" class=" callout">
                         <h4> {{job.Name}}</h4>
 
                         <em>{{job.Status}}</em>
